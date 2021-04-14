@@ -1,2 +1,10 @@
 # Project-2
-Please see README.md for project description. 
+Team members: Tori Arriola, Yifei Cao, Kylee Grant, Leah Handel, Catie Lutz, Rana Saber
+
+# Dataset Overview
+
+
+# Data Cleaning and Storage
+
+
+# Final Visualizations 
