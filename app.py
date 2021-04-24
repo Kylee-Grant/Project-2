@@ -12,7 +12,7 @@ from flask import Flask, render_template, redirect, jsonify, json, request
 #################################################
 # Database Setup: 
 #################################################
-engine = create_engine("sqlite:///resources/birthdata.sqlite")
+engine = create_engine("sqlite:///static/data/birthdata.sqlite")
 
 # reflect an existing database into a new model
 Base = automap_base()
@@ -47,7 +47,7 @@ def line_chart():
     # Convert list of tuples into normal list
     #all = list(np.ravel(results))
 
-    return render_template("line_chart_holder_LH.html", data=results)
+    return render_template("line_chart.html", data=results)
 
 
 @app.route("/api/v1.0/passengers")
