@@ -29,8 +29,8 @@
     console.log(stateInfo);
     
     var myMap = L.map("map", {
-      center: [37.7749, -122.4194],
-      zoom: 6
+      center: [39.8283, -98.5795],
+      zoom: 5
     });
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
