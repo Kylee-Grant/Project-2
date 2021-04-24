@@ -1,6 +1,6 @@
 
-  var teenBirthUrl = "static/data/teenBirth.json";
-  var stateUrl = "static/data/state.geojson"
+  var teenBirthUrl = "../static/data/teenBirth.json";
+  var stateUrl = "../static/data/state.geojson"
 
   var promises = [];
   
