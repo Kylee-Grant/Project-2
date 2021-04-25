@@ -14,7 +14,7 @@ A “thick” server that performs multiple manipulations on data in a database 
 6. Your final visualization should ideally include at least three views.
 
 
-# Inspiration:
+# Inspiration
 In the project, we wanted to understand to a greater extent an issue that particularly impacts young women. Using the dataset identified above, we are intending to analyze the trends related to teen pregnancies/births among 15–19-year olds across the US by county.
 
 As time allows, we are interested in incorporating supplemental information--either via a visualization or citations--on contraception access or Title X services provided. 
@@ -27,6 +27,10 @@ https://catalog.data.gov/dataset/nchs-teen-birth-rates-for-age-group-15-19-in-th
 
 
 # Data Cleaning and Storage
+
+
+# Deployment
+https://project-2-dwp.herokuapp.com/
 
 
 # Final Visualizations 
