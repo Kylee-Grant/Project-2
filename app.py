@@ -33,14 +33,18 @@ app = Flask(__name__)
 # Flask Routes
 #################################################
 
-# Route to render index.html template using data from Mongo
+# Route to render templates, using data from SQLite when needed 
+@app.route("/")
+def index():
+    # Not created yet 
+    return render_template("index.html")
+
 @app.route("/line_chart")
 def line_chart():
-    # Create our session (link) from Python to the DB
     session = Session(engine)
 
-    """Return a list of all state names"""
     # Query all 
+    # Update to group by state
     resultsUS = session.query(National.year, National.us_birth_rate).order_by(National.year.asc()).distinct()
     resultsState = session.query(National.state, National.year, National.state_rate).order_by(National.year.asc()).all()
     # Use of distinct: https://stackoverflow.com/questions/48102501/remove-duplicates-from-sqlalchemy-query-using-set
@@ -59,6 +63,11 @@ def line_chart():
     #data = list(np.ravel(results))
     return render_template("line_chart.html", USData=USData, stateData=stateData)
 
+@app.route("/geomap")
+def geomap():
+    
+    return render_template("geomap.html")
+
 # Comment this out when not in development
-#if __name__ == '__main__':
-   #app.run(debug=True)
+if __name__ == '__main__':
+   app.run(debug=True)
