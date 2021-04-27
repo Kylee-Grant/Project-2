@@ -1,5 +1,6 @@
 // background set up
-  
+console.log(USData[0].year)
+
 var years = [];
 
 for (var i=2003;i<=2018;i++) {

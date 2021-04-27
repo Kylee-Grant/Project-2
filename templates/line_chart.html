@@ -3,8 +3,6 @@
 
 <head>
   <meta charset="UTF-8">
-  <!-- <meta id="line_US" USData="{{USData}}" >
-  <meta id="line_states" stateData="{{stateData}}">--> 
   <title>Line Chart</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
@@ -27,23 +25,20 @@
         <div class = "col-3">
             <input class="form-control" type="text" id="state_input" placeholder="IL">
         </div>
-
+        
     </div>
+    <div class="test"><ul></ul></div>
 
-
+<!--Scripts-->
 <script src="https://d3js.org/d3.v5.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script type="text/javascript" src="static/js/line_Chart_LH.js"></script>
-
-<!--Jinja variables (example: 1) https://stackoverflow.com/questions/21626048/unable-to-pass-jinja2-variables-into-javascript-snippet 2) https://www.reddit.com/r/flask/comments/9l6u6n/ask_flask_how_to_include_a_javascript_file_with/)-->
+<!--Jinja variables-->
 <script type="text/javascript">
     var USData = '{{ USData|tojson }}'
-    var stateData2 = '{{ stateData|tojson }}'
-    console.log(USData)
-    console.log(stateData2)
+    var USData = JSON.parse(USData)
 </script>
-
+<!--Connect to JavaScript Document-->
+<script type="text/javascript" src="static/js/line_Chart_LH.js"></script>
 
 </body>
-
-
+</html>
