@@ -68,6 +68,11 @@ def geomap():
     
     return render_template("geomap.html")
 
+@app.route("/group_bar")
+def group_bar():
+    
+    return render_template("group_bar.html")
+
 # Comment this out when not in development
 if __name__ == '__main__':
    app.run(debug=True)
