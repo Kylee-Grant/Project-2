@@ -1,6 +1,12 @@
-// background set up
-console.log(USData[0].year)
+// // see data in console 
+// console.log(USData)
+// console.log(stateData)
 
+// // Example of how to filter for a specific state 
+// var stateSpecifc = stateData.filter((d) => d.state == "Alabama");
+// console.log(stateSpecifc)
+
+// background set up
 var years = [];
 
 for (var i=2003;i<=2018;i++) {
