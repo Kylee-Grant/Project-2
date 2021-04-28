@@ -9,6 +9,16 @@
 </head>
 <body>
     <div id='plot'></div>
+    
+    
+    <!--Jinja variables-->
+    <script type="text/javascript">
+        var birthRate1517 = '{{ birthRate1517|tojson }}'
+        var birthRate1517 = JSON.parse(birthRate1517)
+        var birthRate1819 = '{{ birthRate1819|tojson }}'
+        var birthRate1819 = JSON.parse(birthRate1819)
+    </script>
+    <!--Connect to JavaScript Document-->
     <script src="static/js/group_bar.js"></script>
 </body>
 </html>

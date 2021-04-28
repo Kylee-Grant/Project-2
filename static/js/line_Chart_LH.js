@@ -1,10 +1,13 @@
-// // see data in console 
-// console.log(USData)
-// console.log(stateData)
+// see data in console 
+console.log(USData)
+console.log(stateData)
 
 // // Example of how to filter for a specific state 
 // var stateSpecifc = stateData.filter((d) => d.state == "Alabama");
 // console.log(stateSpecifc)
+
+// // Example of how to filter to return only specific key values, here only returning the rates for US
+// var USRates = USData.map(function(d) { return d.rate;});
 
 // background set up
 var years = [];

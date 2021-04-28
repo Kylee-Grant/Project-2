@@ -43,24 +43,21 @@ def index():
 def line_chart():
     session = Session(engine)
 
-    # Query all 
-    # Update to group by state
-    resultsUS = session.query(National.year, National.us_birth_rate).order_by(National.year.asc()).distinct()
-    resultsState = session.query(National.state, National.year, National.state_rate).order_by(National.year.asc()).all()
+    # Query to return overall US data and state-specifc by year, filter to return 15-19 year data 
+    resultsUS = session.query(National.year, National.us_rate).filter(National.age_group == "15-19 years").order_by(National.year.asc()).distinct()
+    resultsState = session.query(National.state, National.year, National.state_rate).filter(National.age_group == "15-19 years").order_by(National.year.asc()).all()
     # Use of distinct: https://stackoverflow.com/questions/48102501/remove-duplicates-from-sqlalchemy-query-using-set
 
+    # Store separate lists of dictionaries
     USData = []
     for r in resultsUS: 
         USData.append({"rate": r[1], "year": r[0]})
-    
     stateData = []
     for r in resultsState:
         stateData.append({"rate": r[2], "state": r[0], "year": r[1]})
     
     session.close()
 
-    # Convert list of tuples into normal list
-    #data = list(np.ravel(results))
     return render_template("line_chart.html", USData=USData, stateData=stateData)
 
 @app.route("/geomap")
@@ -70,8 +67,23 @@ def geomap():
 
 @app.route("/group_bar")
 def group_bar():
-    
-    return render_template("group_bar.html")
+    session = Session(engine)
+
+    # Query for US birth rate and year, filtering for 15-17 and 18-19 year data 
+    resultsBirthRate1517 = session.query(National.year, National.us_rate).filter(National.age_group == "15-17 years").order_by(National.year.asc()).distinct()
+    resultsBirthRate1819 = session.query(National.year, National.us_rate).filter(National.age_group == "18-19 years").order_by(National.year.asc()).distinct()
+    # Use of distinct: https://stackoverflow.com/questions/48102501/remove-duplicates-from-sqlalchemy-query-using-set
+
+    # Store separate lists of dictionaries
+    birthRate1517 = []
+    for r in resultsBirthRate1517: 
+        birthRate1517.append({"rate": r[1], "year": r[0]})
+    birthRate1819 = []
+    for r in resultsBirthRate1819: 
+        birthRate1819.append({"rate": r[1], "year": r[0]})
+
+    session.close()
+    return render_template("group_bar.html", birthRate1517=birthRate1517, birthRate1819=birthRate1819)
 
 # Comment this out when not in development
 if __name__ == '__main__':
