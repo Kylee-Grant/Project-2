@@ -39,6 +39,25 @@ def index():
     # Not created yet 
     return render_template("index.html")
 
+
+@app.route("/aboutdata")
+def aboutdata():
+    
+    return render_template("aboutdata.html")
+
+
+@app.route("/aboutus")
+def aboutus():
+    
+    return render_template("aboutus.html")
+
+
+@app.route("/dashboard")
+def dashboard():
+    
+    return render_template("dashboard.html")
+
+
 @app.route("/line_chart")
 def line_chart():
     session = Session(engine)
@@ -57,13 +76,8 @@ def line_chart():
         stateData.append({"rate": r[2], "state": r[0], "year": r[1]})
     
     session.close()
-
     return render_template("line_chart.html", USData=USData, stateData=stateData)
 
-@app.route("/geomap")
-def geomap():
-    
-    return render_template("geomap.html")
 
 @app.route("/group_bar")
 def group_bar():
@@ -84,6 +98,52 @@ def group_bar():
 
     session.close()
     return render_template("group_bar.html", birthRate1517=birthRate1517, birthRate1819=birthRate1819)
+
+
+@app.route("/state_county_bar_chart")
+def state_county_bar():
+    
+    session = Session(engine)
+
+    # Query to return entire datasets 
+    resultsNationalCSV = session.query(National.us_births, National.state_rate, National.age_group, National.year, National.us_rate, National.state_births, National.state, National.index).all()
+    resultsCountyCSV = session.query(County.state_fips_code, County.state, County.index, County.upper_confidence_limit, County.birth_rate, County.county_fips_code, County.county, County.year, County.lower_confidence_limit, County.combined_fips_code).all()
+
+    # Store separate lists of dictionaries
+    nationalCSV = []
+    for r in resultsNationalCSV: 
+        nationalCSV.append({
+            'us_births': r[0],
+            'state_rate': r[1],
+            'age_group': r[2],
+            'year': r[3],
+            'us_rate': r[4],
+            'state_births': r[5],
+            'state': r[6],
+            'index': r[7]})
+    countyCSV = []
+    for r in resultsCountyCSV:
+        countyCSV.append({
+            'state_fips_code': r[0],
+            'state': r[1],
+            'index': r[2],
+            'upper_confidence_limit': r[3],
+            'birth_rate': r[4],
+            'county_fips_code': r[5],
+            'county': r[6],
+            'year': r[7],
+            'lower_confidence_limit': r[8],
+            'combined_fips_code': r[9]})
+           
+    session.close()
+    return render_template("state_county_bar_chart.html", countyCSV=countyCSV, nationalCSV=nationalCSV)
+
+
+@app.route("/geomap")
+def geomap():
+    
+    return render_template("geomap.html")
+
 
 # Comment this out when not in development
 if __name__ == '__main__':

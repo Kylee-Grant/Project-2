@@ -1,11 +1,15 @@
+// see data in console 
+console.log(countyCSV)
+console.log(nationalCSV)
+
 // bonus chart.js plugin for datalabels
 
 Chart.plugins.register(ChartDataLabels);
 
 // reading in csvs, to be replaced with api call to flask app
 
-var stateURL = "NCHS_-_U.S._and_State_Trends_on_Teen_Births.csv";
-var countyURL = "NCHS_-_Teen_Birth_Rates_for_Age_Group_15-19_in_the_United_States_by_County.csv";
+var stateURL = "../static/data/NCHS_-_U.S._and_State_Trends_on_Teen_Births.csv";
+var countyURL = "../static/data/NCHS_-_Teen_Birth_Rates_for_Age_Group_15-19_in_the_United_States_by_County.csv";
 
 var promises = [];
 

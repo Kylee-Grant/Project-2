@@ -29,6 +29,14 @@
 <script src="https://d3js.org/d3.v5.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
 <script src = "https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
-<script type="text/javascript" src="state_bars.js"></script>
+<!--Jinja variables-->
+<script type="text/javascript">
+    var countyCSV = '{{ countyCSV|tojson }}'
+    var countyCSV = JSON.parse(countyCSV)
+    var nationalCSV = '{{ nationalCSV|tojson }}'
+    var nationalCSV = JSON.parse(nationalCSV)
+</script>
+<!--Connect to JavaScript Document-->
+<script type="text/javascript" src="static/js/state_county_bars_LH.js"></script>
 
 </body>
