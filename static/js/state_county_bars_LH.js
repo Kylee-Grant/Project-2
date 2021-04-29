@@ -6,41 +6,41 @@ console.log(nationalCSV)
 
 Chart.plugins.register(ChartDataLabels);
 
-// reading in csvs, to be replaced with api call to flask app
+// // reading in csvs, to be replaced with api call to flask app
 
-var stateURL = "../static/data/NCHS_-_U.S._and_State_Trends_on_Teen_Births.csv";
-var countyURL = "../static/data/NCHS_-_Teen_Birth_Rates_for_Age_Group_15-19_in_the_United_States_by_County.csv";
+// var stateURL = "../static/data/NCHS_-_U.S._and_State_Trends_on_Teen_Births.csv";
+// var countyURL = "../static/data/NCHS_-_Teen_Birth_Rates_for_Age_Group_15-19_in_the_United_States_by_County.csv";
 
-var promises = [];
+// var promises = [];
 
-promises.push(d3.csv(stateURL));
-promises.push(d3.csv(countyURL));
+// promises.push(d3.csv(stateURL));
+// promises.push(d3.csv(countyURL));
 
-Promise.all(promises).then(function(csvs) {
-    console.log(csvs);
+// Promise.all(promises).then(function(csvs) {
+    // console.log(csvs);
 
-    var states = csvs[0];
+    var states = nationalCSV;
 
-    states = states.filter(d=>d["Age Group (Years)"] == "15-19 years");
+    states = states.filter(d=>d["age_group"] == "15-19 years");
 
     // organizing data for states graph: creating an array of objects, one object per state plus the total US. 
     // objects have name, change, bar color. 
     // data note: using name instead of state/county allows the code to borrow illinois from this array for the counties array below
 
-    var stateStarts = states.filter(d =>d.Year == 2003);
-    var stateStops = states.filter(d=>d.Year == 2018);
+    var stateStarts = states.filter(d =>d.year == 2003);
+    var stateStops = states.filter(d=>d.year == 2018);
 
     //https://stackoverflow.com/questions/1960473/get-all-unique-values-in-a-javascript-array-remove-duplicates
 
-    stateList = [...new Set(states.map(d=>d.State))];
+    stateList = [...new Set(states.map(d=>d.state))];
 
-    console.log(stateStarts.filter(d=>d.State == "Illinois"));
+    console.log(stateStops.filter(d=>d.state == "Illinois"));
 
     stateChanges = [];
 
     stateList.forEach(function(state) {
-        var start = stateStarts.filter(d=>d.State == state)[0]["State Rate"];
-        var stop = stateStops.filter(d=>d.State == state)[0]["State Rate"];
+        var start = stateStarts.filter(d=>d.state == state)[0]["state_rate"];
+        var stop = stateStops.filter(d=>d.state == state)[0]["state_rate"];
         var change = stop-start;
         if (state == "Total U.S.") {
             var color = "#cc5a26"
@@ -139,17 +139,17 @@ Promise.all(promises).then(function(csvs) {
 
     //////////// now doing it for IL Counties
 
-    var counties = csvs[1];
+    var counties = countyCSV;
 
-    var ILCounties = counties.filter(d => d.State == "Illinois");
+    var ILCounties = counties.filter(d => d.state == "Illinois");
 
-    var countyStarts = ILCounties.filter(d =>d.Year == 2003);
-    var countyStops = ILCounties.filter(d=>d.Year == 2018);
+    var countyStarts = ILCounties.filter(d =>d.year == 2003);
+    var countyStops = ILCounties.filter(d=>d.year == 2018);
 
-    console.log(countyStarts.filter(d=>d.County == "Cook")[0]["Birth Rate"]);
+    console.log(countyStarts.filter(d=>d.county == "Cook")[0]["Birth Rate"]);
 
 
-    countyList = [...new Set(ILCounties.map(d=>d.County))];
+    countyList = [...new Set(ILCounties.map(d=>d.county))];
     console.log(countyList);
 
     countyChanges = [];
@@ -157,8 +157,8 @@ Promise.all(promises).then(function(csvs) {
     // creating the array of objects for our county data
 
     countyList.forEach(function(county) {
-        var start = countyStarts.filter(d=>d.County == county)[0]["Birth Rate"];
-        var stop = countyStops.filter(d=>d.County == county)[0]["Birth Rate"];
+        var start = countyStarts.filter(d=>d.county == county)[0]["birth_rate"];
+        var stop = countyStops.filter(d=>d.county == county)[0]["birth_rate"];
         var change = stop-start;
         var newObject = {
             name: county,
@@ -258,4 +258,4 @@ Promise.all(promises).then(function(csvs) {
         var ctx = document.getElementById('countyChart');
 
         var countyChart = new Chart(ctx, config);
-});
+// });
