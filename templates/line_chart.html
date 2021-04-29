@@ -31,16 +31,19 @@
 
 <!--Scripts-->
 <script src="https://d3js.org/d3.v5.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
+<script src = "https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 <!--Jinja variables-->
 <script type="text/javascript">
     var USData = '{{ USData|tojson }}'
     var USData = JSON.parse(USData)
+</script>
+<script type="text/javascript">
     var stateData = '{{ stateData|tojson }}'
     var stateData = JSON.parse(stateData)
 </script>
 <!--Connect to JavaScript Document-->
-<script type="text/javascript" src="static/js/line_Chart_LH.js"></script>
+<script type="text/javascript" src="../static/js/line_Chart_LH.js"></script>
 
 </body>
 </html>

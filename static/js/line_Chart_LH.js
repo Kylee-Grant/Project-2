@@ -1,3 +1,7 @@
+// bonus chart.js plugin for datalabels
+
+Chart.plugins.register(ChartDataLabels);
+
 // see data in console 
 console.log(USData)
 console.log(stateData)
@@ -18,34 +22,62 @@ for (var i=2003;i<=2018;i++) {
 
 var colors = ["#648FFF","#785EF0", "#DC267F", "#FE6100", "#FFB000"]; // to update with colors from actual site
 
-// function to create a new dataset for the chart
+var stateList = [...new Set(stateData.map(d=>d.state))];
 
-function makeLine (state, colorIndex) {
+stateLineData = {}
+
+stateList.forEach(function(state) {
+  var allYears = stateData.filter((d) => d.state == state);
+  var sortedYears = allYears.sort(function(a, b) {
+    return a.year - b.year;
+  });
+  var dataArray = sortedYears.map(d=>d.rate);
+  stateLineData[state] = dataArray;
+});
+
+console.log(stateLineData);
+
+// function to create a new dataset for the chart
+var colorIndex = 0
+
+function makeLine (state) {
   var line = {}
   line.label = state;
-  line.backgroundColor = colors[colorIndex];
-  line.borderColor = colors[colorIndex];
-  line.data = stateData[state];
-  
+  line.backgroundColor = "rgba(0, 0, 0, 0)";
+  line.borderColor = colors[colorIndex%5];
+  line.pointBackgroundColor = colors[colorIndex%5];
+  line.data = stateLineData[state];
+  var datalabels = {}
+  datalabels.color = colors[colorIndex%5];
+  datalabels.borderColor = colors[colorIndex%5];
+  datalabels.backgroundColor = "white"
+  line.datalabels = datalabels;
+  colorIndex++;
   return line;
 }
 
 // sample data entry to be replaced by api call to flask app
-var US = [41.1, 40.5, 39.7, 41.1, 41.5, 40.2, 37.9, 34.2, 31.3, 29.4, 26.6, 24.2, 22.3, 20.3, 18.8, 17.4];
+var US = USData.map(d=>d.rate);
 
-var stateData = {
-IL: [40.2, 40.1, 38.5, 39.8, 40.2, 38.5, 35.9, 33, 29.5, 27.9, 24.6, 22.8, 21.1, 18.7, 17.4, 15.8],
-AL: [51.4, 51, 48.1, 51.8, 52.1, 50.5, 48.3, 43.6, 40.5, 39.2, 34.3, 32, 30.1, 28.4, 27, 25.2],
-NH: [18, 18.1, 18, 18.1, 19.3, 19.1, 16.4, 15.7, 13.7, 13.8, 12.6, 11, 10.9, 9.3, 8.4, 8]
-};
+// var stateData = {
+// IL: [40.2, 40.1, 38.5, 39.8, 40.2, 38.5, 35.9, 33, 29.5, 27.9, 24.6, 22.8, 21.1, 18.7, 17.4, 15.8],
+// AL: [51.4, 51, 48.1, 51.8, 52.1, 50.5, 48.3, 43.6, 40.5, 39.2, 34.3, 32, 30.1, 28.4, 27, 25.2],
+// NH: [18, 18.1, 18, 18.1, 19.3, 19.1, 16.4, 15.7, 13.7, 13.8, 12.6, 11, 10.9, 9.3, 8.4, 8]
+// };
 
 // chart set up with just US totals
 
 var datasets = [{
   label: 'US',
-  backgroundColor: 'black',
-  borderColor: 'black',
+  backgroundColor: "rgba(0, 0, 0, 0)",
+  borderColor: "#A8A4A4",
+  pointBackgroundColor: "#A8A4A4",
   data: US,
+  datalabels: {
+    color: "#A8A4A4",
+    borderColor: "#A8A4A4",
+    backgroundColor: "white"
+  }
 }];
 
 var data = {
@@ -58,7 +90,33 @@ var data = {
 const config = {
   type: 'line',
   data: data,
-  options: {
+  options: {          
+    plugins: {
+    legend: false,
+    datalabels: {
+        // color: function(context) {
+        //     var colorIndex = context.dataIndex-1;
+        //     return dataset.backgroundColor},
+        font: {
+          weight: 'bold'
+        },
+        formatter: function(value, context) {
+            return [context.dataset.label];
+          },
+        textAlign: "center",
+        display: function(context) {
+          var index = context.dataIndex;
+          if (index == 3) {return true;}
+          else {return false;}
+        },
+        align: "top",
+        anchor: "center",
+        clip: false,
+        borderWidth: 2,
+        borderRadius: 4,
+
+      }
+},
     animations: {
       y: {
         easing: 'easeInOutElastic',
