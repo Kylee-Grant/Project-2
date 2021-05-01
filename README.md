@@ -164,17 +164,17 @@ Separately, our team needed to store a JSON of the U.S. and State Trends on Teen
 
 # Software, Languages, and Libraries
 
-Chart.js (new library) 
-CSS
-D3.js 
-DB Browser for SQLite
-Heroku 
-HTML
-Leaflet.js
-Pandas 
-Plotly
-SQLAlchemy
-SQLite
+- Chart.js (new library) 
+- CSS
+- D3.js 
+- DB Browser for SQLite
+- Heroku 
+- HTML
+- Leaflet.js
+- Pandas 
+- Plotly
+- SQLAlchemy
+- SQLite
 
 
 # Dashboard 
@@ -215,10 +215,10 @@ If time allowed, our team would have liked to address the following questions:
 3. What concurrent trends for birth control might have overlapped with this data?
 
 If you would like to learn more about sexual health issues, especially those impacting adolescents, click on the resources below: 
-[Contraceptive Use Among Adolescents in the United States (Guttmacher Institute; April 2020)](https://www.guttmacher.org/fact-sheet/contraceptive-use-among-adolescents-united-states)
-[Why Is the Teen Birth Rate Falling? (Pew Research Center; August 2019)](https://www.pewresearch.org/fact-tank/2019/08/02/why-is-the-teen-birth-rate-falling/)
-[Healthcare Rights of Youth in Illinois (Illinois Caucus of Adolescent Health; January 2018)](https://www.icah.org/blog/healthcare-rights-of-youth-in-illinois)
-[Planned Parenthood Historical Timeline (Planned Parenthood)](https://www.plannedparenthood.org/planned-parenthood-wisconsin-inc/about-us/80yearsppwi/planned-parenthood-historical-timeline) 
+- [Contraceptive Use Among Adolescents in the United States (Guttmacher Institute; April 2020)](https://www.guttmacher.org/fact-sheet/contraceptive-use-among-adolescents-united-states)
+- [Why Is the Teen Birth Rate Falling? (Pew Research Center; August 2019)](https://www.pewresearch.org/fact-tank/2019/08/02/why-is-the-teen-birth-rate-falling/)
+- [Healthcare Rights of Youth in Illinois (Illinois Caucus of Adolescent Health; January 2018)](https://www.icah.org/blog/healthcare-rights-of-youth-in-illinois)
+- [Planned Parenthood Historical Timeline (Planned Parenthood)](https://www.plannedparenthood.org/planned-parenthood-wisconsin-inc/about-us/80yearsppwi/planned-parenthood-historical-timeline) 
 
 
 
