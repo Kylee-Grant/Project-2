@@ -6,18 +6,6 @@ console.log(nationalCSV)
 
 Chart.plugins.register(ChartDataLabels);
 
-// // reading in csvs, to be replaced with api call to flask app
-
-// var stateURL = "../static/data/NCHS_-_U.S._and_State_Trends_on_Teen_Births.csv";
-// var countyURL = "../static/data/NCHS_-_Teen_Birth_Rates_for_Age_Group_15-19_in_the_United_States_by_County.csv";
-
-// var promises = [];
-
-// promises.push(d3.csv(stateURL));
-// promises.push(d3.csv(countyURL));
-
-// Promise.all(promises).then(function(csvs) {
-    // console.log(csvs);
 
     var states = nationalCSV;
 
@@ -34,19 +22,12 @@ Chart.plugins.register(ChartDataLabels);
 
     stateList = [...new Set(states.map(d=>d.state))];
 
-    console.log(stateStops.filter(d=>d.state == "Illinois"));
-
     stateChanges = [];
 
     stateList.forEach(function(state) {
         var start = stateStarts.filter(d=>d.state == state)[0]["state_rate"];
         var stop = stateStops.filter(d=>d.state == state)[0]["state_rate"];
         var change = stop-start;
-        // if (state == "Total U.S.") {
-        //     var color = "#A8A4A4"
-        // } else {
-        //     var color = "#66d166"
-        // };
         var newObject = {
             name: state,
             change: change,
@@ -55,8 +36,6 @@ Chart.plugins.register(ChartDataLabels);
         };
         stateChanges.push(newObject);
     });
-
-    console.log(stateChanges);
 
     // sorting the array from highest to lowest -- https://stackoverflow.com/questions/52785769/how-can-i-sort-data-from-highest-to-lowest-in-chart-js
 
@@ -89,7 +68,7 @@ Chart.plugins.register(ChartDataLabels);
       var originalStateChartData = stateChartData;
       // config
 
-      var config = {
+      var configStates = {
         type: 'bar',
         data: stateChartData,
         options: {
@@ -130,7 +109,7 @@ Chart.plugins.register(ChartDataLabels);
 
     var ctx = document.getElementById('stateChart');
 
-    var stateChart = new Chart(ctx, config);
+    var stateChart = new Chart(ctx, configStates);
 
 
     //////////// now doing it for IL Counties
@@ -147,7 +126,6 @@ Chart.plugins.register(ChartDataLabels);
 
 
     countyList = [...new Set(inputCounties.map(d=>d.county))];
-    console.log(countyList);
 
     countyChanges = [];
 
@@ -165,15 +143,11 @@ Chart.plugins.register(ChartDataLabels);
         countyChanges.push(newObject);
     });
 
-    console.log(countyChanges);
-
     // sorting
 
     sortedCountyChanges = countyChanges.sort(function(a, b) {
         return b.change - a.change;
       });
-
-    console.log(sortedCountyChanges);
 
     // grabbing Illinois from the state data and selecting high and low counties
 
@@ -181,8 +155,6 @@ Chart.plugins.register(ChartDataLabels);
     stateBar.color = "#A8A4A4";
 
     var selection = [sortedCountyChanges[0], sortedCountyChanges[1],sortedCountyChanges[2],stateBar,sortedCountyChanges[sortedCountyChanges.length - 3],sortedCountyChanges[sortedCountyChanges.length - 2],sortedCountyChanges[sortedCountyChanges.length - 1]];
-
-    console.log(selection);
 
     //set up
 
@@ -212,11 +184,12 @@ Chart.plugins.register(ChartDataLabels);
 
     
     // config
-      var config = {
+      var configCounties = {
         type: 'bar',
         data: makeCountyChart("Illinois"),
         options: {
             responsive: true,
+            tooltips: false,
             plugins: {
                 legend: false,
                 datalabels: {
@@ -257,7 +230,7 @@ Chart.plugins.register(ChartDataLabels);
 
         var ctx = document.getElementById('countyChart');
 
-        var countyChart = new Chart(ctx, config);
+        var countyChart = new Chart(ctx, configCounties);
 
         var addedStates = [];
 
@@ -306,4 +279,3 @@ Chart.plugins.register(ChartDataLabels);
           console.log(originalData);
           stateChart.update();
         });
-// });

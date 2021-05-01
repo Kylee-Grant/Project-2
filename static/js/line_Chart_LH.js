@@ -37,7 +37,6 @@ stateList.forEach(function(state) {
   stateLineData[state] = dataArray;
 });
 
-console.log(stateLineData);
 
 // function to create a new dataset for the chart
 var colorIndex = 0;
@@ -65,12 +64,6 @@ function makeLine (state) {
 // sample data entry to be replaced by api call to flask app
 var US = USData.map(d=>d.rate);
 
-// var stateData = {
-// IL: [40.2, 40.1, 38.5, 39.8, 40.2, 38.5, 35.9, 33, 29.5, 27.9, 24.6, 22.8, 21.1, 18.7, 17.4, 15.8],
-// AL: [51.4, 51, 48.1, 51.8, 52.1, 50.5, 48.3, 43.6, 40.5, 39.2, 34.3, 32, 30.1, 28.4, 27, 25.2],
-// NH: [18, 18.1, 18, 18.1, 19.3, 19.1, 16.4, 15.7, 13.7, 13.8, 12.6, 11, 10.9, 9.3, 8.4, 8]
-// };
-
 // chart set up with just US totals
 
 var datasets = [{
@@ -95,7 +88,7 @@ var data = {
 // chart config
 
 
-const config = {
+const configLine = {
   type: 'line',
   data: data,
   options: {   
@@ -149,12 +142,11 @@ const config = {
   };
 
 
-
 // render chart
 
   var ctx = document.getElementById('myChart');
 
-  var myChart = new Chart(ctx, config);
+  var myChart = new Chart(ctx, configLine);
 
 
 
@@ -192,14 +184,6 @@ d3.select("#clear").on("click", function() {
 // row + column works to contain it and still be responsive
 
 // data input: currently set up with object of arrays for each state with birthrates for 2003-2018
-
-// to do: 
-// title, axis, data labels
-// hook up with flask and actual site
-// error handling
-// colors, animations, styling etc.
-// maybe: you can really mess with your chart if you want to! add county data? color code based on contraception access, other data sets?
-
 
 // animation/interactions: adding datasets similar to this example: https://www.chartjs.org/docs/latest/samples/animations/drop.html
 
