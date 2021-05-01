@@ -18,7 +18,8 @@ var trace1 = {
   x: years,
   y: rates1819,
   name: 'Ages 18-19',
-  type: 'bar'
+  type: 'bar',
+  marker: {color:'#7f7f7f'}
 };
 console.log(trace1);
 
@@ -26,7 +27,8 @@ var trace2 = {
   x: years,
   y:rates1517,
   name: 'Ages 15-17',
-  type: 'bar'
+  type: 'bar',
+  marker: {color:'#17becf'}
 };
 
 
