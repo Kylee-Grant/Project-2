@@ -18,7 +18,7 @@
     teenBirth.data.forEach(function(birthData) {
       let stateID = birthData[11];
       let birthRateVal = birthData[14]
-      birthRate[stateID] = birthRateVal;
+      birthRate[stateID] = parseFloat(birthRateVal);
     });
 
     stateInfo.features.forEach(function(stateID){
@@ -52,7 +52,8 @@
     
       onEachFeature: function(feature, layer) {
         layer.bindPopup("State: " + feature.properties.NAME + "<br>Teen Birth Rate<br>" +
-          feature.properties.birthRateVal + "%");
+          feature.properties.birthRateVal + "%" +
+          "<br>2003-2018<br>");
       }
     }).addTo(myMap);
 
