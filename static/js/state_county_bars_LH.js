@@ -234,8 +234,8 @@ Chart.plugins.register(ChartDataLabels);
 
         var addedStates = [];
 
-        d3.select("#add_state").on("click", function(){
-          var input = d3.select("#state_input").property("value");
+        d3.select("#add_state_bars").on("click", function(){
+          var input = d3.select("#state_input_bars").property("value");
           console.log(input);
           chosenState = sortedStateChanges.filter(d => d.name == input);
 
@@ -260,8 +260,7 @@ Chart.plugins.register(ChartDataLabels);
 
         });
 
-        d3.select("#clear").on("click", function() {
-          console.log("clicked button");
+        d3.select("#clear_bars").on("click", function() {
           originalData = [sortedStateChanges[0], sortedStateChanges[1],sortedStateChanges[2],sortedStateChanges.filter(d=>d.name == "Total U.S.")[0],sortedStateChanges[49],sortedStateChanges[50],sortedStateChanges[51]];
           stateChart.data.labels = originalData.map(d=>d.name)
           stateChart.data.datasets = [
@@ -276,6 +275,5 @@ Chart.plugins.register(ChartDataLabels);
                 }
             },
           ];
-          console.log(originalData);
           stateChart.update();
         });
