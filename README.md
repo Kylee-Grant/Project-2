@@ -24,12 +24,15 @@ Our team was inspired to understand to a greater extent the occurance of teen pr
 We utilized two datasets from the National Center for Health Statistics, which is part of the Centers for Disease Control and Prevention. 
 
 [Teen Birth Rates for Age Group 15-19 in the United States by County](https://catalog.data.gov/dataset/nchs-teen-birth-rates-for-age-group-15-19-in-the-united-states-by-county)
+
 This dataset details estimated birth rates, expressed per 1,000 females aged 15–19, for 3,137 U.S. counties. This data spans 2003 to 2018 and largely is sourced from the National Vital Statistics System birth data files. For further information, please see the documentation at the link above. 
 
 [U.S. and State Trends on Teen Births](https://catalog.data.gov/dataset/nchs-u-s-and-state-trends-on-teen-births)
+
 This dataset assembles all final birth data for females aged 15–19, 15–17, and 18–19 for the United States and each of the 50 states, expressed per 1,000 females in each age range. This data spans 1990–2018 and is based on 100% of birth certificates filed in 50 states. 
 
 [US Census: Cartographic Boundary Files (GeoJSON)](https://eric.clst.org/tech/usgeojson/)
+
 For this project, we referenced the work of Eric Celeste, who has taken the United States Census Cartographic Boundary Files and converted them to GeoJSON using the MyGeoData vector converter. In specific, we utilized the U.S. state boundaries in our choropleth map—more on this later. 
 
 
