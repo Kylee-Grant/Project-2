@@ -40,8 +40,15 @@
     padding: 30px;
   }
 
+  .h2 {
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 30px;
+  }
+
   .h4 {
-    padding: 30px;
+    padding-left: 50px;
+    padding-right: 50px;
   }
 
   #sidebar-wrapper {
@@ -55,7 +62,13 @@
     z-index: 1000;
     transition: all 0.4s ease 0s;
   }
-  
+  #img-p{
+    max-height: 300px;
+    position:relative;
+    padding-right: 50px;
+    padding-left: 50px;
+    padding-top: 30px;
+  }
   #page-content-wrapper {
     width: 100%;
   }
@@ -78,6 +91,9 @@
 
   .card-header{
     background-color: white;
+  }
+  .img-text {
+    font-size: 20px;
   }
 
   /* .card-dashboard-one {
