@@ -50,17 +50,16 @@
         <br>
         <div class="nav nav-pills nav-flush flex-column mb-auto">
           <div class="nav-item pt-3">
-            <a href="" class="nav-link" title="Dashboard" data-bs-toggle="tooltip"
-              data-bs-placement="right">
+            <a href="" class="nav-link" title="Dashboard" data-bs-toggle="tooltip" data-bs-placement="right">
               <svg class="bi" width="24" height="24">
                 <use xlink:href="#speedometer2" />
               </svg>
               Dashboard
             </a>
-            <div><a class="dropdown-item" href="geomap">Map of Teen Birth Rates</a></div>
-            <div><a class="dropdown-item" href="group_bar">Group Bar</a></div>
-            <div><a class="dropdown-item" href="line_chart">Line Chart</a></div>
-            <div><a class="dropdown-item border-bottom pb-3" href="state_county_bar_chart">State County Bar</a></div>
+            <a class="dropdown-item" onclick="window.open(href='geomap')">Map of Teen Birth Rates</a>
+            <a class="dropdown-item" onclick="window.open(href='group_bar')">Group Bar</a>
+            <a class="dropdown-item" onclick="window.open(href='line_chart')">Line Chart</a>
+            <a class="dropdown-item border-bottom pb-3" onclick="window.open(href='state_county_bar_chart')">State County Bar</a>
           </div>
           <div>
             <a href="aboutdata" class="nav-link py-3 border-bottom" title="Customers" data-bs-toggle="tooltip"
