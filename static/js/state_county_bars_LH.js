@@ -42,15 +42,16 @@ Chart.plugins.register(ChartDataLabels);
         var start = stateStarts.filter(d=>d.state == state)[0]["state_rate"];
         var stop = stateStops.filter(d=>d.state == state)[0]["state_rate"];
         var change = stop-start;
-        if (state == "Total U.S.") {
-            var color = "#cc5a26"
-        } else {
-            var color = "#4DA6A6"
-        };
+        // if (state == "Total U.S.") {
+        //     var color = "#A8A4A4"
+        // } else {
+        //     var color = "#66d166"
+        // };
         var newObject = {
             name: state,
             change: change,
-            color: color
+            color: "#66d166",
+
         };
         stateChanges.push(newObject);
     });
@@ -75,35 +76,30 @@ Chart.plugins.register(ChartDataLabels);
           {
             label: selection.map(d=>d.name),
             data: selection.map(d=>d.change),
-            borderColor: selection.map(d=>d.color),
-            backgroundColor: selection.map(d=>d.color),
+            borderColor: "#52a7a7",
+            backgroundColor: "#52a7a7",
             datalabels: {
-                align: function(context) {
-                    var index = context.dataIndex;
-                    var value = context.dataset.data[index];
-                    if (value > -10) {return "start"}
-                    else {return "end"}},
+              align: 'start',
                 anchor: 'start'
               }
           }
         ]
       };
 
+      var originalStateChartData = stateChartData;
       // config
 
       var config = {
         type: 'bar',
         data: stateChartData,
         options: {
+          borderColor: "#52a7a7",
+          backgroundColor: "#52a7a7",
           responsive: true,
           plugins: {
             legend: false,
             datalabels: {
-                color: function(context) {
-                    var index = context.dataIndex;
-                    var value = context.dataset.data[index];
-                    if (value > -10) {return "black"}
-                    else {return "white"}},
+                color: "black",
                 font: {
                   weight: 'bold'
                 },
@@ -141,15 +137,16 @@ Chart.plugins.register(ChartDataLabels);
 
     var counties = countyCSV;
 
-    var ILCounties = counties.filter(d => d.state == "Illinois");
+    var input = "Illinois"
 
-    var countyStarts = ILCounties.filter(d =>d.year == 2003);
-    var countyStops = ILCounties.filter(d=>d.year == 2018);
+    function makeCountyChart(input) {
+    var inputCounties = counties.filter(d => d.state == input);
 
-    console.log(countyStarts.filter(d=>d.county == "Cook")[0]["Birth Rate"]);
+    var countyStarts = inputCounties.filter(d =>d.year == 2003);
+    var countyStops = inputCounties.filter(d=>d.year == 2018);
 
 
-    countyList = [...new Set(ILCounties.map(d=>d.county))];
+    countyList = [...new Set(inputCounties.map(d=>d.county))];
     console.log(countyList);
 
     countyChanges = [];
@@ -163,7 +160,7 @@ Chart.plugins.register(ChartDataLabels);
         var newObject = {
             name: county,
             change: change,
-            color: "#4DA6A6"
+            color: "#52a7a7"
         };
         countyChanges.push(newObject);
     });
@@ -180,8 +177,8 @@ Chart.plugins.register(ChartDataLabels);
 
     // grabbing Illinois from the state data and selecting high and low counties
 
-    var stateBar = sortedStateChanges.filter(d=>d.name == "Illinois")[0]
-    stateBar.color = "#cc5a26";
+    var stateBar = sortedStateChanges.filter(d=>d.name == input)[0]
+    stateBar.color = "#A8A4A4";
 
     var selection = [sortedCountyChanges[0], sortedCountyChanges[1],sortedCountyChanges[2],stateBar,sortedCountyChanges[sortedCountyChanges.length - 3],sortedCountyChanges[sortedCountyChanges.length - 2],sortedCountyChanges[sortedCountyChanges.length - 1]];
 
@@ -193,7 +190,7 @@ Chart.plugins.register(ChartDataLabels);
         labels: selection.map(d=>d.name),
         datasets: [
           {
-            label: selection.map(d=>d.name),
+            label: "birth rate",
             data: selection.map(d=>d.change),
             borderColor: selection.map(d=>d.color),
             backgroundColor: selection.map(d=>d.color),
@@ -210,11 +207,14 @@ Chart.plugins.register(ChartDataLabels);
         ]
       };
 
-      // config
+      return countyChartData
+    }
 
+    
+    // config
       var config = {
         type: 'bar',
-        data: countyChartData,
+        data: makeCountyChart("Illinois"),
         options: {
             responsive: true,
             plugins: {
@@ -223,7 +223,7 @@ Chart.plugins.register(ChartDataLabels);
                     color: function(context) {
                         var index = context.dataIndex;
                         var value = context.dataset.data[index];
-                        if (value > -5) {return "black"}
+                        if (value > -10) {return "black"}
                         else {return "white"}},
                     font: {
                       weight: 'bold'
@@ -236,7 +236,7 @@ Chart.plugins.register(ChartDataLabels);
             },
             title: {
               display: true,
-              text: 'Illinois counties with the highest and lowest change in teen birthrates, 2003 - 2018'
+              text: `Counties with the highest and lowest change in teen birthrates, 2003 - 2018`
             },
             scales: {
                 xAxes: [{
@@ -258,4 +258,52 @@ Chart.plugins.register(ChartDataLabels);
         var ctx = document.getElementById('countyChart');
 
         var countyChart = new Chart(ctx, config);
+
+        var addedStates = [];
+
+        d3.select("#add_state").on("click", function(){
+          var input = d3.select("#state_input").property("value");
+          console.log(input);
+          chosenState = sortedStateChanges.filter(d => d.name == input);
+
+          stateIndex = sortedStateChanges.map(d=>d.name).indexOf(input);
+          var insertIndex = 0
+          stateChart.data.labels.forEach(function(label){
+            if (sortedStateChanges.map(d=>d.name).indexOf(label) < stateIndex) {
+              insertIndex = stateChart.data.labels.indexOf(label);
+            } 
+          });
+          insertIndex = insertIndex + 1
+
+          stateChart.data.labels.splice(insertIndex, 0, chosenState[0].name);
+          stateChart.data.datasets[0].data.splice(insertIndex, 0, chosenState[0].change);
+          
+          stateChart.update();
+
+          addedStates.push(insertIndex);
+
+          countyChart.data = makeCountyChart(input);
+          countyChart.update();
+
+        });
+
+        d3.select("#clear").on("click", function() {
+          console.log("clicked button");
+          originalData = [sortedStateChanges[0], sortedStateChanges[1],sortedStateChanges[2],sortedStateChanges.filter(d=>d.name == "Total U.S.")[0],sortedStateChanges[49],sortedStateChanges[50],sortedStateChanges[51]];
+          stateChart.data.labels = originalData.map(d=>d.name)
+          stateChart.data.datasets = [
+            {
+              label: "birth rate",
+              data: originalData.map(d=>d.change),
+              borderColor: "#52a7a7",
+              backgroundColor: "#52a7a7",
+              datalabels: {
+                  align: 'start',
+                  anchor: 'start'
+                }
+            },
+          ];
+          console.log(originalData);
+          stateChart.update();
+        });
 // });

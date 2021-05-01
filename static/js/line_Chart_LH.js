@@ -21,6 +21,8 @@ for (var i=2003;i<=2018;i++) {
 }
 
 var colors = ["#648FFF","#785EF0", "#DC267F", "#FE6100", "#FFB000"]; // to update with colors from actual site
+var displays = [[false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false], [false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false], [false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false]]
+
 
 var stateList = [...new Set(stateData.map(d=>d.state))];
 
@@ -38,7 +40,8 @@ stateList.forEach(function(state) {
 console.log(stateLineData);
 
 // function to create a new dataset for the chart
-var colorIndex = 0
+var colorIndex = 0;
+var displayIndex = 1;
 
 function makeLine (state) {
   var line = {}
@@ -50,11 +53,14 @@ function makeLine (state) {
   var datalabels = {}
   datalabels.color = colors[colorIndex%5];
   datalabels.borderColor = colors[colorIndex%5];
-  datalabels.backgroundColor = "white"
+  datalabels.backgroundColor = "white";
+  datalabels.display = displays[displayIndex%3];
   line.datalabels = datalabels;
   colorIndex++;
+  displayIndex++;
   return line;
 }
+
 
 // sample data entry to be replaced by api call to flask app
 var US = USData.map(d=>d.rate);
@@ -76,7 +82,8 @@ var datasets = [{
   datalabels: {
     color: "#A8A4A4",
     borderColor: "#A8A4A4",
-    backgroundColor: "white"
+    backgroundColor: "white",
+    display: displays[0]
   }
 }];
 
@@ -87,10 +94,15 @@ var data = {
 
 // chart config
 
+
 const config = {
   type: 'line',
   data: data,
-  options: {          
+  options: {   
+    title: {
+      display: true,
+      text: `Teen Birthrate by State vs. US Total, 2003 - 2018`
+    },       
     plugins: {
     legend: false,
     datalabels: {
@@ -104,11 +116,11 @@ const config = {
             return [context.dataset.label];
           },
         textAlign: "center",
-        display: function(context) {
-          var index = context.dataIndex;
-          if (index == 3) {return true;}
-          else {return false;}
-        },
+        // display: function(context) {
+        //   var index = context.dataIndex;
+        //   if (index == 3) {return true;}
+        //   else {return false;}
+        // },
         align: "top",
         anchor: "center",
         clip: false,
@@ -129,40 +141,13 @@ const config = {
             }
           }
         },
-      show: {
-        easing: 'easeInOutElastic',
-        from: (ctx) => {
-          if (ctx.type === 'data') {
-            if (ctx.mode === 'default' && !ctx.dropped) {
-              ctx.dropped = true;
-              return 0;
-              }
-            }
-          }
+      update: {
+        duration: 0
         }
       },
     },
   };
 
-  // chart actions
-
-  // const actions = [
-  //   {
-  //     name: 'Add',
-  //     handler(chart) {
-  //       const data = chart.data;
-  //       const dsColor = Utils.namedColor(chart.data.datasets.length);
-  //       const newDataset = {
-  //         label: selection,
-  //         backgroundColor: Utils.transparentize(dsColor, 0.5),
-  //         borderColor: dsColor,
-  //         data: stateData[selection],
-  //       };
-  //       chart.data.datasets.push(newDataset);
-  //       chart.update();
-  //     }
-  //   },
-  // ];
 
 
 // render chart
@@ -176,7 +161,7 @@ const config = {
 d3.select("#add_state").on("click", function(){
   var selection = d3.select("#state_input").property("value");
   console.log(selection);
-  newLine = makeLine(selection, 2);
+  var newLine = makeLine(selection, 2);
   myChart.data.datasets.push(newLine);
   myChart.update();
 });
@@ -186,9 +171,16 @@ d3.select("#clear").on("click", function() {
   console.log("clicked button");
   myChart.data.datasets = [{
     label: 'US',
-    backgroundColor: 'black',
-    borderColor: 'black',
+    backgroundColor: "rgba(0, 0, 0, 0)",
+    borderColor: '#A8A4A4',
+    color: '#A8A4A4',
     data: US,
+    datalabels: {
+      color: "#A8A4A4",
+      borderColor: "#A8A4A4",
+      backgroundColor: "white",
+      display: displays[0]
+    }
   }];
   myChart.update();
 });

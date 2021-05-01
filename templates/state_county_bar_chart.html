@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>bar charts for project 2</title>
+  <title>Teen Birth Rate by County</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <link href="../static/css/reset.css" rel="stylesheet">
   <link href="../static/css/simple-sidebar.css" rel="stylesheet">
@@ -17,7 +17,18 @@
             </canvas>
         </div>
     </div>
-    <br><br><br>
+    <br><div class="row m-3">
+        <div class="col-3">
+            <button type="button" class="btn btn-secondary" id="clear">Clear States</button>
+        </div>
+        <div class = "col-3">
+            <button type="button" class="btn btn-secondary" id="add_state">Add State</button>
+        </div>
+        <div class = "col-3">
+            <input class="form-control" type="text" id="state_input" placeholder="Illinois">
+        </div>
+        
+    </div><br>
     <div class="row">
         <div class="chart-container col-9">
             <canvas id="countyChart">
