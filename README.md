@@ -206,7 +206,7 @@ This visualization charts each state’s teen birth rate per 1,000 females aged 
 
 ## Teen Birth Rate by State and County (state_county_bar_chart.html)
 
-This visualization charts the change in the teen birth rate per 1,000 females aged 15-19 from 2003 to 2018, organized by state in the top chart and county in the bottom chart. States and counties with the least and greatest amount of change have been pre-selected. 
+This visualization charts the change in the teen birth rate per 1,000 females aged 15-19 from 2003 to 2018, organized by state in the top chart and county in the bottom chart. States and counties with the least and greatest amount of change have been pre-selected. Although most counties reflect the overall trend of declining teen birth rates across the U.S., that change is not true of every county. Counties that experienced an increase in their teen birth rates warrant further investigation; preliminary examination indicated that an increase would occur more often in smaller communities. 
 
 # Further Questions and Research 
 If time allowed, our team would have liked to address the following questions: 
