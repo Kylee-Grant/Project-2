@@ -162,7 +162,7 @@ Separately, our team needed to store a JSON of the U.S. and State Trends on Teen
 # Deployment
 Once the SQLite database was ready, our team could proceed with organization the flow of information on our website. We decided upon the following structure: 
 
-![Graph](https://chart.googleapis.com/chart?cht=gv&chl=graph{SQLite--Flask Application[type=s];Flask Application--HTML/JavaScript[type=s];HTML/JavaScript--Heroku Deployment[type=s]})
+![Graph](https://chart.googleapis.com/chart?cht=gv&chl=graph{SQLite--Flask[type=s];Flask--HTML/JavaScript[type=s];HTML/JavaScript--Heroku[type=s]})
 
 https://project-2-dwp.herokuapp.com/
 In summary, the cleaned data was stored in a SQLite database. We used a Flask application with SQLAlchemy to query the SQLite and serve the data. The data from the Flask app was prepared with Jinja, and the JavaScript used that data for the visualizations. Finally, we deployed our website with Heroku and connected our GitHub repository.
