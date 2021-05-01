@@ -23,7 +23,7 @@ Our team was inspired to understand to a greater extent the occurance of teen pr
 # Dataset Overview
 We utilized two datasets from the National Center for Health Statistics, which is part of the Centers for Disease Control and Prevention. In addition, we utilized the JSON version of the U.S. and State Trends on Teen Births dataset in addition to GeoJSON boundaries for the states.
 
-## [Teen Birth Rates for Age Group 15-19 in the United States by County](https://catalog.data.gov/dataset/nchs-teen-birth-rates-for-age-group-15-19-in-the-united-states-by-county):
+## [Teen Birth Rates for Age Group 15-19 in the United States by County (CSV):](https://catalog.data.gov/dataset/nchs-teen-birth-rates-for-age-group-15-19-in-the-united-states-by-county)
 This dataset details estimated birth rates, expressed per 1,000 females aged 15–19, for 3,137 U.S. counties. This data spans 2003 to 2018 and largely is sourced from the National Vital Statistics System birth data files. For further information, please see the documentation at the link above. 
 
 ### Metadata: 
@@ -86,7 +86,7 @@ This dataset details estimated birth rates, expressed per 1,000 females aged 15�
           ],
           title: "NCHS - U.S. and State Trends on Teen Births"
 
-## [U.S. and State Trends on Teen Births](https://catalog.data.gov/dataset/nchs-u-s-and-state-trends-on-teen-births):
+## [U.S. and State Trends on Teen Births (CSV, JSON):](https://catalog.data.gov/dataset/nchs-u-s-and-state-trends-on-teen-births)
 This dataset assembles all final birth data for females aged 15–19, 15–17, and 18–19 for the United States and each of the 50 states, expressed per 1,000 females in each age range. This data spans 1990–2018 and is based on 100% of birth certificates filed in 50 states. 
 
 ### Metadata: 
@@ -149,7 +149,7 @@ This dataset assembles all final birth data for females aged 15–19, 15–17, a
           ],
           title: "NCHS - U.S. and State Trends on Teen Births"
 
-## [US Census: Cartographic Boundary Files (GeoJSON)](https://eric.clst.org/tech/usgeojson/):
+## [US Census: Cartographic Boundary Files (GeoJSON):](https://eric.clst.org/tech/usgeojson/)
 For this project, we referenced the work of Eric Celeste, who has taken the United States Census Cartographic Boundary Files and converted them to GeoJSON using the MyGeoData vector converter. 
 
 
@@ -160,7 +160,9 @@ Separately, our team needed to store a JSON of the U.S. and State Trends on Teen
 
 
 # Deployment
+Once the SQLite database was ready, our team could proceed with organization the flow of information on our website. We decided upon the following structure: 
 
+[Graph](https://chart.googleapis.com/chart?cht=gv&chl=graph{C_0--H_0[type=s];C_0--H_1[type=s];C_0--H_2[type=s];C_0--C_1[type=s];C_1--H_3[type=s];C_1--H_4[type=s];C_1--H_5[type=s]})
 
 https://project-2-dwp.herokuapp.com/
 The cleaned data was stored in a SQLite database.
