@@ -53,7 +53,7 @@ Chart.plugins.register(ChartDataLabels);
         labels: selection.map(d=>d.name),
         datasets: [
           {
-            label: selection.map(d=>d.name),
+            label: "birth rate",
             data: selection.map(d=>d.change),
             borderColor: "#52a7a7",
             backgroundColor: "#52a7a7",
@@ -72,6 +72,7 @@ Chart.plugins.register(ChartDataLabels);
         type: 'bar',
         data: stateChartData,
         options: {
+          tooltips: false,
           borderColor: "#52a7a7",
           backgroundColor: "#52a7a7",
           responsive: true,
