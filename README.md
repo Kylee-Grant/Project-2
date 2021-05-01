@@ -21,15 +21,133 @@ Our team was inspired to understand to a greater extent the occurance of teen pr
 
 
 # Dataset Overview
-We utilized two datasets from the National Center for Health Statistics, which is part of the Centers for Disease Control and Prevention. 
+We utilized two datasets from the National Center for Health Statistics, which is part of the Centers for Disease Control and Prevention. In addition, we utilized the JSON version of the U.S. and State Trends on Teen Births dataset in addition to GeoJSON boundaries for the states.
 
 ## [Teen Birth Rates for Age Group 15-19 in the United States by County](https://catalog.data.gov/dataset/nchs-teen-birth-rates-for-age-group-15-19-in-the-united-states-by-county):
 This dataset details estimated birth rates, expressed per 1,000 females aged 15–19, for 3,137 U.S. counties. This data spans 2003 to 2018 and largely is sourced from the National Vital Statistics System birth data files. For further information, please see the documentation at the link above. 
 
+### Metadata: 
+          {
+          @type: "dcat:Dataset",
+          accessLevel: "public",
+          bureauCode: [
+          "009:00"
+          ],
+          contactPoint: {
+          @type: "vcard:Contact",
+          fn: "National Center for Health Statistics",
+          hasEmail: "mailto:cdcinfo@cdc.gov"
+          },
+          description: "This dataset assembles all final birth data for females aged 15–19, 15–17, and 18–19 for the United States and each of the 50 states. Data are based on     100% of birth certificates filed in all 50 states. All the teen birth rates in this dashboard reflect the latest revisions to Census populations (i.e., the intercensal populations) and thus provide a consistent series of accurate rates for the past 25 years. The denominators of the teen birth rates for 1991–1999 have been revised to incorporate the results of the 2000 Census. The denominators of the teen birth rates for 2001–2009 have revised to incorporate the results of the 2010 Census.",
+          distribution: [
+          {
+          @type: "dcat:Distribution",
+          downloadURL: "https://data.cdc.gov/api/views/y268-sna3/rows.csv?accessType=DOWNLOAD",
+          mediaType: "text/csv"
+          },
+          {
+          @type: "dcat:Distribution",
+          downloadURL: "https://data.cdc.gov/api/views/y268-sna3/rows.rdf?accessType=DOWNLOAD",
+          mediaType: "application/rdf+xml"
+          },
+          {
+          @type: "dcat:Distribution",
+          downloadURL: "https://data.cdc.gov/api/views/y268-sna3/rows.json?accessType=DOWNLOAD",
+          mediaType: "application/json"
+          },
+          {
+          @type: "dcat:Distribution",
+          downloadURL: "https://data.cdc.gov/api/views/y268-sna3/rows.xml?accessType=DOWNLOAD",
+          mediaType: "application/xml"
+          }
+          ],
+          identifier: "https://data.cdc.gov/api/views/y268-sna3",
+          issued: "2018-07-09",
+          keyword: [
+          "nchs",
+          "state teen birth trends",
+          "teen births",
+          "united states",
+          "u.s. and state trends on teen births",
+          "u.s. teen birth rate"
+          ],
+          landingPage: "https://data.cdc.gov/d/y268-sna3",
+          license: "http://opendefinition.org/licenses/odc-odbl/",
+          modified: "2020-06-05",
+          programCode: [
+          "009:020"
+          ],
+          publisher: {
+          @type: "org:Organization",
+          name: "Centers for Disease Control and Prevention"
+          },
+          theme: [
+          "NCHS"
+          ],
+          title: "NCHS - U.S. and State Trends on Teen Births"
+
 ## [U.S. and State Trends on Teen Births](https://catalog.data.gov/dataset/nchs-u-s-and-state-trends-on-teen-births):
 This dataset assembles all final birth data for females aged 15–19, 15–17, and 18–19 for the United States and each of the 50 states, expressed per 1,000 females in each age range. This data spans 1990–2018 and is based on 100% of birth certificates filed in 50 states. 
 
-In order to put together the geographic information for our choropleth map, we utilized the JSON version of the U.S. and State Trends on Teen Births dataset in addition to GeoJSON boundaries for the states.
+### Metadata: 
+          {
+          @type: "dcat:Dataset",
+          accessLevel: "public",
+          bureauCode: [
+          "009:00"
+          ],
+          contactPoint: {
+          @type: "vcard:Contact",
+          fn: "National Center for Health Statistics",
+          hasEmail: "mailto:cdcinfo@cdc.gov"
+          },
+          description: "This dataset assembles all final birth data for females aged 15–19, 15–17, and 18–19 for the United States and each of the 50 states. Data are based on 100% of birth certificates filed in all 50 states. All the teen birth rates in this dashboard reflect the latest revisions to Census populations (i.e., the intercensal populations) and thus provide a consistent series of accurate rates for the past 25 years. The denominators of the teen birth rates for 1991–1999 have been revised to incorporate the results of the 2000 Census. The denominators of the teen birth rates for 2001–2009 have revised to incorporate the results of the 2010 Census.",
+          distribution: [
+          {
+          @type: "dcat:Distribution",
+          downloadURL: "https://data.cdc.gov/api/views/y268-sna3/rows.csv?accessType=DOWNLOAD",
+          mediaType: "text/csv"
+          },
+          {
+          @type: "dcat:Distribution",
+          downloadURL: "https://data.cdc.gov/api/views/y268-sna3/rows.rdf?accessType=DOWNLOAD",
+          mediaType: "application/rdf+xml"
+          },
+          {
+          @type: "dcat:Distribution",
+          downloadURL: "https://data.cdc.gov/api/views/y268-sna3/rows.json?accessType=DOWNLOAD",
+          mediaType: "application/json"
+          },
+          {
+          @type: "dcat:Distribution",
+          downloadURL: "https://data.cdc.gov/api/views/y268-sna3/rows.xml?accessType=DOWNLOAD",
+          mediaType: "application/xml"
+          }
+          ],
+          identifier: "https://data.cdc.gov/api/views/y268-sna3",
+          issued: "2018-07-09",
+          keyword: [
+          "nchs",
+          "state teen birth trends",
+          "teen births",
+          "united states",
+          "u.s. and state trends on teen births",
+          "u.s. teen birth rate"
+          ],
+          landingPage: "https://data.cdc.gov/d/y268-sna3",
+          license: "http://opendefinition.org/licenses/odc-odbl/",
+          modified: "2020-06-05",
+          programCode: [
+          "009:020"
+          ],
+          publisher: {
+          @type: "org:Organization",
+          name: "Centers for Disease Control and Prevention"
+          },
+          theme: [
+          "NCHS"
+          ],
+          title: "NCHS - U.S. and State Trends on Teen Births"
 
 ## [US Census: Cartographic Boundary Files (GeoJSON)](https://eric.clst.org/tech/usgeojson/):
 For this project, we referenced the work of Eric Celeste, who has taken the United States Census Cartographic Boundary Files and converted them to GeoJSON using the MyGeoData vector converter. 
