@@ -2,7 +2,7 @@
 Team members: Tori Arriola, Yifei Cao, Kylee Grant, Leah Handel, Catie Lutz, Rana Saber
 
 # Project Requirements
-1. Your visualization must include a Python Flask–powered API, HTML/CSS, JavaScript, and at least one database (SQL, MongoDB, SQLite).
+1. Your visualization must include a Python Flask–powered API, HTML/CSS, JavaScript, and a database (SQL, MongoDB, SQLite).
 2. Your project should fall into one of the below four tracks:
      a. A custom “creative” D3.js project (i.e., a nonstandard graph or chart)
      b. A combination of web scraping and Leaflet or Plotly
@@ -19,6 +19,7 @@ Our team was inspired to understand to a greater extent the occurance of teen pr
 1. What is the current trend of teen births in the U.S.? 
 2. What correlations exist between the rate of teen births and other factors, such as age and location? 
 
+For more information on the importance of this topic, please refer to [this article](https://www.cdc.gov/teenpregnancy/about/index.htm) by the CDC. 
 
 # Dataset Overview
 We utilized two datasets from the National Center for Health Statistics, which is part of the Centers for Disease Control and Prevention. In addition, we utilized the JSON version of the U.S. and State Trends on Teen Births dataset in addition to GeoJSON boundaries for the states.
@@ -154,7 +155,7 @@ For this project, we referenced the work of Eric Celeste, who has taken the Unit
 
 
 # Data Cleaning and Storage
-The CSV datasets provided by the National Center for Health Statistics lacked many of the common issues we would normally identify in datasets available through websties like Data.gov. Our primary concern was preparing the data to be SQLite-ready. Using Jupyter Notebook, our team loaded in our CSV data using Pandas to cut down our data to 2003–2018 for ease of comparison between state-level and county-level data for each year. We also reviewed the data types and column titles and adjusted where necessary. The cleaned data was then pushed to SQLite. In order to allow automapping and class-based queries, our team used [DB Browser for SQLite](https://sqlitebrowser.org/) to quickly identify the primary key for each table. 
+The CSV datasets provided by the National Center for Health Statistics lacked many of the common issues we would normally identify in datasets available through websites like Data.gov. Our primary concern was preparing the data to be SQLite-ready. Using Jupyter Notebook, our team loaded in our CSV data using Pandas to cut down our data to 2003–2018 for ease of comparison between state-level and county-level data for each year. We also reviewed the data types and column titles and adjusted where necessary. The cleaned data was then pushed to SQLite. In order to allow an automap and class-based queries, our team used [DB Browser for SQLite](https://sqlitebrowser.org/) to quickly identify the primary key for each table. 
 
 Separately, our team needed to store a JSON of the U.S. and State Trends on Teen Births dataset and GeoJSON of the state boundaries. These two files were not manipulated prior to their use in JavaScript; in the JavaScript code for the choropleth map, the birth rate data is merged with the geographic information of the GeoJSON using the state FIPS code. This resulted in a GeoJSON with the proper geographical borders as well as our birth rate data to allow for appropriate state shading. Please refer to geomap.html for our code. 
 
@@ -179,7 +180,7 @@ SQLite
 ### [DWP's Dashboard](https://project-2-dwp.herokuapp.com/)
 
 ## Deployment
-Once the SQLite database was ready, our team could proceed with organization the flow of information on our website. We decided upon the following structure: 
+Once the SQLite database was ready, we proceeded with organizing the flow of information on our website according to the following structure:  
 
 ![Graph](static/images/Structure.png)
 
@@ -204,4 +205,18 @@ This visualization charts each state’s teen birth rate per 1,000 females aged 
 ## Teen Birth Rate by State and County (state_county_bar_chart.html)
 
 This visualization charts the change in the teen birth rate per 1,000 females aged 15-19 from 2003 to 2018, organized by state in the top chart and county in the bottom chart. States and counties with the least and greatest amount of change have been pre-selected. 
+
+# Further Questions and Research 
+If time allowed, our team would have liked to address the following questions: 
+1. How might access to Title X Family Planning Resources affect these trends?
+2. What is the prevalence of abstinence-only education in high birth rate areas? 
+3. What concurrent trends for birth control might have overlapped with this data?
+
+If you would like to learn more about sexual health issues, especially those impacting adolescents, click on the resources below: 
+[Contraceptive Use Among Adolescents in the United States (Guttmacher Institute; April 2020)](https://www.guttmacher.org/fact-sheet/contraceptive-use-among-adolescents-united-states)
+[Why Is the Teen Birth Rate Falling? (Pew Research Center; August 2019)](https://www.pewresearch.org/fact-tank/2019/08/02/why-is-the-teen-birth-rate-falling/)
+[Healthcare Rights of Youth in Illinois (Illinois Caucus of Adolescent Health; January 2018)](https://www.icah.org/blog/healthcare-rights-of-youth-in-illinois)
+[Planned Parenthood Historical Timeline (Planned Parenthood)](https://www.plannedparenthood.org/planned-parenthood-wisconsin-inc/about-us/80yearsppwi/planned-parenthood-historical-timeline) 
+
+
 
