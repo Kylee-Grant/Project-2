@@ -159,17 +159,49 @@ The CSV datasets provided by the National Center for Health Statistics lacked ma
 Separately, our team needed to store a JSON of the U.S. and State Trends on Teen Births dataset and GeoJSON of the state boundaries. These two files were not manipulated prior to their use in JavaScript; in the JavaScript code for the choropleth map, the birth rate data is merged with the geographic information of the GeoJSON using the state FIPS code. This resulted in a GeoJSON with the proper geographical borders as well as our birth rate data to allow for appropriate state shading. Please refer to geomap.html for our code. 
 
 
-# Deployment
+# Software, Languages, and Libraries
+
+Chart.js (new library) 
+CSS
+D3.js 
+DB Browser for SQLite
+Heroku 
+HTML
+Leaflet.js
+Pandas 
+Plotly
+SQLAlchemy
+SQLite
+
+
+# Dashboard 
+
+### [DWP's Dashboard](https://project-2-dwp.herokuapp.com/)
+
+## Deployment
 Once the SQLite database was ready, our team could proceed with organization the flow of information on our website. We decided upon the following structure: 
 
-![Graph](https://chart.googleapis.com/chart?cht=gv&chl=graph{SQLite--Flask[type=s];Flask--HTML/JavaScript[type=s];HTML/JavaScript--Heroku[type=s]})
+![Graph](static/images/Structure.png)
 
-https://project-2-dwp.herokuapp.com/
 In summary, the cleaned data was stored in a SQLite database. We used a Flask application with SQLAlchemy to query the SQLite and serve the data. The data from the Flask app was prepared with Jinja, and the JavaScript used that data for the visualizations. Finally, we deployed our website with Heroku and connected our GitHub repository.
 
 
 # Final Visualizations 
-Chart.js (new library) 
-Leaflet.js
-Plotly 
+## Map of Teen Birth Rate by State (geomap.html)
+
+This choropleth map visualizes the average teen birth rate per 1,000 females aged 15-19 for each state from 2003 to 2018. This map reflects a concentration of higher birth rates in the South and central areas of the U.S. as well as lower birth rates particularly in the Northeast. 
+
+
+## Teen Birth Rate by Age Range (group_bar.html)
+
+This visualization charts the teen birth rates from 2003 to 2018, separated by ages 15-17 and  18-19. It can be observed from this chart that the birth rate amongst the teens aged 18-19 years is higher than that of the teens aged 15-17 years; we believed this was an important observation as it may provide a counterpoint to a common bias in regards to this topic. Media often focuses on early teen pregnancies, however the data suggests that these young pregnancies are not representative of the majority of teen pregnancies. 
+
+
+## Teen Birth Rate 2003–2018 (line_chart.html)
+
+This visualization charts each state’s teen birth rate per 1,000 females aged 15-19 by year from 2003 to 2018. This chart reflects a universal trend of decreasing teen birth rates during this range of years. According to the Pew Research Center, the teen birth rate in 2018 was less than half of what it had been in 2008. The Pew Research Center noted that, while the teen birth rate has been on a steep decline since the early 1990s, the decline accelerated after the onset of the Great Recession in 2007. 
+
+## Teen Birth Rate by State and County (state_county_bar_chart.html)
+
+This visualization charts the change in the teen birth rate per 1,000 females aged 15-19 from 2003 to 2018, organized by state in the top chart and county in the bottom chart. States and counties with the least and greatest amount of change have been pre-selected. 
 

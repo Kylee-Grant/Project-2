@@ -1,6 +1,4 @@
 # Based off of model from activity 10.3.10
-import numpy as np
-
 #import sqlite3
 #import sqlalchemy
 from sqlalchemy.ext.automap import automap_base
@@ -33,20 +31,29 @@ app = Flask(__name__)
 # Flask Routes
 #################################################
 
-# Route to render templates, using data from SQLite when needed 
-# @app.route("/")
-# def index():
-    # Not created yet 
-    # return render_template("dashboard.html")
+# Routes to render templates, using data from SQLite when needed 
+
+@app.route("/aboutdata")
+def aboutdata():
+    
+    return render_template("aboutdata.html")
+
+
+@app.route("/aboutus")
+def aboutus():
+    
+    return render_template("aboutus.html")
+
 
 @app.route("/")
-def home():
-    return redirect ("/dashboard")
-
-@app.route("/dashboard")
 def dashboard():
     session = Session(engine)
 
+    # This route will prepare all of the visualizations within the dashboard. 
+
+    #################################################
+    # LINE_CHART 
+    #################################################
     # Query to return overall US data and state-specifc by year, filter to return 15-19 year data 
     resultsUS = session.query(National.year, National.us_rate).filter(National.age_group == "15-19 years").order_by(National.year.asc()).distinct()
     resultsState = session.query(National.state, National.year, National.state_rate).filter(National.age_group == "15-19 years").order_by(National.year.asc()).all()
@@ -60,6 +67,10 @@ def dashboard():
     for r in resultsState:
         stateData.append({"rate": r[2], "state": r[0], "year": r[1]})
 
+
+    #################################################
+    # GROUP BAR 
+    #################################################
     resultsBirthRate1517 = session.query(National.year, National.us_rate).filter(National.age_group == "15-17 years").order_by(National.year.asc()).distinct()
     resultsBirthRate1819 = session.query(National.year, National.us_rate).filter(National.age_group == "18-19 years").order_by(National.year.asc()).distinct()
     # Use of distinct: https://stackoverflow.com/questions/48102501/remove-duplicates-from-sqlalchemy-query-using-set
@@ -72,6 +83,10 @@ def dashboard():
     for r in resultsBirthRate1819: 
         birthRate1819.append({"rate": r[1], "year": r[0]})
     
+
+    #################################################
+    # STATE_COUNTY_BAR_CHART 
+    #################################################
     resultsNationalCSV = session.query(National.us_births, National.state_rate, National.age_group, National.year, National.us_rate, National.state_births, National.state, National.index).all()
     resultsCountyCSV = session.query(County.state_fips_code, County.state, County.index, County.upper_confidence_limit, County.birth_rate, County.county_fips_code, County.county, County.year, County.lower_confidence_limit, County.combined_fips_code).all()
 
@@ -104,17 +119,6 @@ def dashboard():
     session.close()
 
     return render_template("dashboard.html", USData=USData, stateData=stateData, birthRate1517=birthRate1517, birthRate1819=birthRate1819, countyCSV=countyCSV, nationalCSV=nationalCSV)
-
-@app.route("/aboutdata")
-def aboutdata():
-    
-    return render_template("aboutdata.html")
-
-
-@app.route("/aboutus")
-def aboutus():
-    
-    return render_template("aboutus.html")
 
 
 @app.route("/line_chart")
