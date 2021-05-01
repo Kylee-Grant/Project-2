@@ -98,7 +98,11 @@ var data = {
 const config = {
   type: 'line',
   data: data,
-  options: {          
+  options: {   
+    title: {
+      display: true,
+      text: `Teen Birthrate by State vs. US Total, 2003 - 2018`
+    },       
     plugins: {
     legend: false,
     datalabels: {
