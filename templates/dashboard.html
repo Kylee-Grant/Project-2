@@ -15,22 +15,15 @@
     integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
     crossorigin="" />
 
-  <!-- D3 Library -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.7.0/d3.min.js"
-    integrity="sha512-L5K9Bf852XyB+wrvRFGwWzfhVI+TZqJlgwzX9yvrfhILuzIZfrcQO4au9D9eVDnkQ6oqYr9v2QwJdFo+eKE50Q=="
-    crossorigin="anonymous"></script>
-
-  <!-- Leaflet JavaScript code -->
-  <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
     integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
     crossorigin=""></script>
 
-  <!-- leaflet-choropleth JavaScript -->
-  <script type="text/javascript" src="../static/js/choropleth.js"></script>
 
   <!-- Custom styles for this template -->
   <link href="../static/css/reset.css" rel="stylesheet">
   <link href="../static/css/simple-sidebar.css" rel="stylesheet">
+  <link href="../static/css/style.css" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -61,32 +54,22 @@
     <div id="sidebar-wrapper">
       <div class="side-navbar active-nav d-flex justify-content-between flex-wrap flex-column ps-3 pt-3" id="sidebar">
         <div class="intro-text ">Welcome to DWP's Data Dashboard</div>
-        <div class="nav nav-pills nav-flush flex-column mb-auto">
-          <div class="nav-item py-3">
-            <a href="index.html" class="nav-link active border-bottom py-3" title="Home" data-bs-toggle="tooltip"
-              data-bs-placement="right">
-              <svg class="bi" width="24" height="24">
-                <use xlink:href="#home" />
-              </svg>
-              Home
-            </a>
-          </div>
+        <div class="nav nav-pills nav-flush flex-column mb-auto pt-3">
           <div>
-            <a href="dashbooard.html" class="nav-link" title="Dashboard" data-bs-toggle="tooltip"
+            <a href="" class="nav-link" title="Dashboard" data-bs-toggle="tooltip"
               data-bs-placement="right">
               <svg class="bi" width="24" height="24">
                 <use xlink:href="#speedometer2" />
               </svg>
               Dashboard
             </a>
-            <div><a class="dropdown-item" href="#">Visualization 1</a></div>
-            <div><a class="dropdown-item" href="#">Visualization 2</a></div>
-            <div><a class="dropdown-item" href="#">Visualization 3</a></div>
-            <div><a class="dropdown-item" href="#">Visualization 4</a></div>
-            <div><a class="dropdown-item border-bottom" href="#">Visualization 5</a></div>
+            <div><a class="dropdown-item" href="geomap">Map of Teen Birth Rates</a></div>
+            <div><a class="dropdown-item" href="group_bar">Group Bar</a></div>
+            <div><a class="dropdown-item" href="line_chart">Line Chart</a></div>
+            <div><a class="dropdown-item border-bottom" href="state_county_bar_chart">State County Bar</a></div>
           </div>
           <div>
-            <a href="aboutdata.html" class="nav-link py-3 border-bottom" title="Customers" data-bs-toggle="tooltip"
+            <a href="aboutdata" class="nav-link py-3 border-bottom" title="Customers" data-bs-toggle="tooltip"
               data-bs-placement="right">
               <svg class="bi" width="24" height="24">
                 <use xlink:href="#people-circle" />
@@ -95,7 +78,7 @@
             </a>
           </div>
           <div>
-            <a href="aboutus.html" class="nav-link py-3 border-bottom" title="Customers" data-bs-toggle="tooltip"
+            <a href="aboutus" class="nav-link py-3 border-bottom" title="Customers" data-bs-toggle="tooltip"
               data-bs-placement="right">
               <svg class="bi" width="24" height="24">
                 <use xlink:href="#people-circle" />
@@ -146,7 +129,7 @@
             </div><!-- card-body-top -->
             <!-- The div where we'll insert our map -->
             <div class="flot-chart-wrapper">
-             <!--  <canvas id="myChart" class="flot-chart"></canvas>
+             <canvas id="myChart" class="flot-chart"></canvas>
               <div class="row m-3">
                 <div class="col-3">
                     <button type="button" class="btn btn-primary" id="clear">Clear States</button>
@@ -157,13 +140,54 @@
                 <div class = "col-3">
                     <input class="form-control" type="text" id="state_input" placeholder="IL">
                 </div>
-                
-            </div>-->
+            </div>
             </div><!-- flot-chart-wrapper -->
           </div><!-- card-body -->
         </div><!-- card -->
       </div><!-- col -->
 
+      <div class="col-lg-7 ht-lg-100p m-4">
+        <div class="card card-dashboard-one">
+          <div class="card-header">
+            <div>
+              <h6 class="card-title">Geomap</h6>
+              <p class="card-text">Some Text</p>
+            </div>
+            <div class="btn-group">
+              <button class="btn active">Day</button>
+              <button class="btn">Week</button>
+              <button class="btn">Month</button>
+            </div>
+          </div><!-- card-header -->
+          <div class="card-body">
+            <div class="card-body-top m-2">
+              <div>
+                <label class="mg-b-0">label 1</label>
+                <h2>13,956</h2>
+              </div>
+              <div>
+                <label class="mg-b-0">label 2</label>
+                <h2>33.50%</h2>
+              </div>
+              <div>
+                <label class="mg-b-0">label 3</label>
+                <h2>83,123</h2>
+              </div>
+              <div>
+                <label class="mg-b-0">label 4</label>
+                <h2>16,869</h2>
+              </div>
+            </div><!-- card-body-top -->
+            <!-- The div where we'll insert our map -->
+            <div class="flot-chart-wrapper">
+              <canvas id="stateChart"></canvas>
+              <br><br><br>
+              <canvas id="countyChart"></canvas>
+            </div><!-- flot-chart-wrapper -->
+          </div><!-- card-body -->
+        </div><!-- card -->
+      </div><!-- col -->
+    
       <div class="col-lg-4 ht-lg-100p mt-4">
         <div class="card card-dashboard-one">
           <div class="card-header">
@@ -188,7 +212,7 @@
               </div>
             </div><!-- card-body-top -->
             <div class="flot-chart-wrapper">
-              <div id="flotChart" class="flot-chart"></div>
+              <div id='plot' class="flot-chart"></div>
             </div><!-- flot-chart-wrapper -->
           </div><!-- card-body -->
         </div><!-- card -->
@@ -323,7 +347,42 @@
         </div>
       </footer>
 
+<!--Scripts-->
+<script src="https://d3js.org/d3.v5.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
+<script src = "https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+<!-- <script type="text/javascript" src="../static/js/choropleth.js"></script> -->
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
+<!-- Jinja variables -->
+<script type="text/javascript">
+    var USData = '{{ USData|tojson }}'
+    var USData = JSON.parse(USData)
+</script>
+<script type="text/javascript">
+    var stateData = '{{ stateData|tojson }}'
+    var stateData = JSON.parse(stateData)
+</script> -->
+
+<script type="text/javascript">
+  var birthRate1517 = '{{ birthRate1517|tojson }}'
+  var birthRate1517 = JSON.parse(birthRate1517)
+  var birthRate1819 = '{{ birthRate1819|tojson }}'
+  var birthRate1819 = JSON.parse(birthRate1819)
+</script>
+
+<script type="text/javascript">
+  var countyCSV = '{{ countyCSV|tojson }}'
+  var countyCSV = JSON.parse(countyCSV)
+  var nationalCSV = '{{ nationalCSV|tojson }}'
+  var nationalCSV = JSON.parse(nationalCSV)
+</script>
+
+<!-- Connect to JavaScript Document -->
+<script type="text/javascript" src="../static/js/line_Chart_LH.js"></script>
+<!-- <script type="text/javascript" src="../static/js/geomap.js"></script> -->
+<script src="../static/js/group_bar.js"></script>
+<script type="text/javascript" src="static/js/state_county_bars_LH.js"></script>
 
 </body>
 

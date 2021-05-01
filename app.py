@@ -34,10 +34,10 @@ app = Flask(__name__)
 #################################################
 
 # Route to render templates, using data from SQLite when needed 
-@app.route("/")
-def index():
+# @app.route("/")
+# def index():
     # Not created yet 
-    return render_template("index.html")
+    # return render_template("dashboard.html")
 
 
 @app.route("/aboutdata")
@@ -52,10 +52,67 @@ def aboutus():
     return render_template("aboutus.html")
 
 
-@app.route("/dashboard")
+@app.route("/")
 def dashboard():
+    session = Session(engine)
+
+    # Query to return overall US data and state-specifc by year, filter to return 15-19 year data 
+    resultsUS = session.query(National.year, National.us_rate).filter(National.age_group == "15-19 years").order_by(National.year.asc()).distinct()
+    resultsState = session.query(National.state, National.year, National.state_rate).filter(National.age_group == "15-19 years").order_by(National.year.asc()).all()
+    # Use of distinct: https://stackoverflow.com/questions/48102501/remove-duplicates-from-sqlalchemy-query-using-set
+
+    # Store separate lists of dictionaries
+    USData = []
+    for r in resultsUS: 
+        USData.append({"rate": r[1], "year": r[0]})
+    stateData = []
+    for r in resultsState:
+        stateData.append({"rate": r[2], "state": r[0], "year": r[1]})
+
+    resultsBirthRate1517 = session.query(National.year, National.us_rate).filter(National.age_group == "15-17 years").order_by(National.year.asc()).distinct()
+    resultsBirthRate1819 = session.query(National.year, National.us_rate).filter(National.age_group == "18-19 years").order_by(National.year.asc()).distinct()
+    # Use of distinct: https://stackoverflow.com/questions/48102501/remove-duplicates-from-sqlalchemy-query-using-set
+
+    # Store separate lists of dictionaries
+    birthRate1517 = []
+    for r in resultsBirthRate1517: 
+        birthRate1517.append({"rate": r[1], "year": r[0]})
+    birthRate1819 = []
+    for r in resultsBirthRate1819: 
+        birthRate1819.append({"rate": r[1], "year": r[0]})
     
-    return render_template("dashboard.html")
+    resultsNationalCSV = session.query(National.us_births, National.state_rate, National.age_group, National.year, National.us_rate, National.state_births, National.state, National.index).all()
+    resultsCountyCSV = session.query(County.state_fips_code, County.state, County.index, County.upper_confidence_limit, County.birth_rate, County.county_fips_code, County.county, County.year, County.lower_confidence_limit, County.combined_fips_code).all()
+
+    # Store separate lists of dictionaries
+    nationalCSV = []
+    for r in resultsNationalCSV: 
+        nationalCSV.append({
+            'us_births': r[0],
+            'state_rate': r[1],
+            'age_group': r[2],
+            'year': r[3],
+            'us_rate': r[4],
+            'state_births': r[5],
+            'state': r[6],
+            'index': r[7]})
+    countyCSV = []
+    for r in resultsCountyCSV:
+        countyCSV.append({
+            'state_fips_code': r[0],
+            'state': r[1],
+            'index': r[2],
+            'upper_confidence_limit': r[3],
+            'birth_rate': r[4],
+            'county_fips_code': r[5],
+            'county': r[6],
+            'year': r[7],
+            'lower_confidence_limit': r[8],
+            'combined_fips_code': r[9]})
+
+    session.close()
+
+    return render_template("dashboard.html", USData=USData, stateData=stateData, birthRate1517=birthRate1517, birthRate1819=birthRate1819, countyCSV=countyCSV, nationalCSV=nationalCSV)
 
 
 @app.route("/line_chart")
@@ -76,6 +133,7 @@ def line_chart():
         stateData.append({"rate": r[2], "state": r[0], "year": r[1]})
     
     session.close()
+
     return render_template("line_chart.html", USData=USData, stateData=stateData)
 
 
