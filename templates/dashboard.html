@@ -68,7 +68,7 @@
               </svg>
               Dashboard
             </a>
-            <div><a class="dropdown-item" href="geomap">Map of Teen Birth Rates</a></div>
+            <div onclick="openInNewTab('www.test.com');"><a class="dropdown-item" href="geomap">Map of Teen Birth Rates</a></div>
             <div><a class="dropdown-item" href="group_bar">Group Bar</a></div>
             <div><a class="dropdown-item" href="line_chart">Line Chart</a></div>
             <div><a class="dropdown-item border-bottom pb-3" href="state_county_bar_chart">State County Bar</a></div>
@@ -131,6 +131,7 @@
             <div class="flot-chart-wrapper m-2">
               <canvas id="myChart" class="flot-chart"></canvas>
               <div class="row m-3">
+                <br>
                 <div class="col-3">
                   <button type="button" class="btn btn-secondary" id="clear">Clear States</button>
                 </div>
