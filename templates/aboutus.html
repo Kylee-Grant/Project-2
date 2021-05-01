@@ -37,47 +37,42 @@
       <path fill-rule="evenodd"
         d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
     </symbol>
+    <symbol id="grid" viewBox="0 0 16 16">
+      <path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3zM2.5 2a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zM1 10.5A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3z"/>
+    </symbol>
   </svg>
 
   <div id="wrapper">
     <div id="sidebar-wrapper">
       <div class="side-navbar active-nav d-flex justify-content-between flex-wrap flex-column ps-3 pt-3" id="sidebar">
+        <br>
         <div class="intro-text ">Welcome to DWP's Data Dashboard</div>
+        <br>
         <div class="nav nav-pills nav-flush flex-column mb-auto">
-          <div class="nav-item py-3">
-            <a href="index.html" class="nav-link active border-bottom py-3" title="Home" data-bs-toggle="tooltip"
-              data-bs-placement="right">
-              <svg class="bi" width="24" height="24">
-                <use xlink:href="#home" />
-              </svg>
-              Home
-            </a>
-          </div>
-          <div>
-            <a href="dashboard.html" class="nav-link" title="Dashboard" data-bs-toggle="tooltip"
+          <div class="nav-item pt-3">
+            <a href="" class="nav-link" title="Dashboard" data-bs-toggle="tooltip"
               data-bs-placement="right">
               <svg class="bi" width="24" height="24">
                 <use xlink:href="#speedometer2" />
               </svg>
               Dashboard
             </a>
-            <div><a class="dropdown-item" href="#">Visualization 1</a></div>
-            <div><a class="dropdown-item" href="#">Visualization 2</a></div>
-            <div><a class="dropdown-item" href="#">Visualization 3</a></div>
-            <div><a class="dropdown-item" href="#">Visualization 4</a></div>
-            <div><a class="dropdown-item border-bottom" href="#">Visualization 5</a></div>
+            <div><a class="dropdown-item" href="geomap">Map of Teen Birth Rates</a></div>
+            <div><a class="dropdown-item" href="group_bar">Group Bar</a></div>
+            <div><a class="dropdown-item" href="line_chart">Line Chart</a></div>
+            <div><a class="dropdown-item border-bottom pb-3" href="state_county_bar_chart">State County Bar</a></div>
           </div>
           <div>
-            <a href="aboutdata.html" class="nav-link py-3 border-bottom" title="Customers" data-bs-toggle="tooltip"
+            <a href="aboutdata" class="nav-link py-3 border-bottom" title="Customers" data-bs-toggle="tooltip"
               data-bs-placement="right">
               <svg class="bi" width="24" height="24">
-                <use xlink:href="#people-circle" />
+                <use xlink:href="#grid" />
               </svg>
               About The Data
             </a>
           </div>
           <div>
-            <a href="aboutus.html" class="nav-link py-3 border-bottom" title="Customers" data-bs-toggle="tooltip"
+            <a href="aboutus" class="nav-link py-3 border-bottom" title="Customers" data-bs-toggle="tooltip"
               data-bs-placement="right">
               <svg class="bi" width="24" height="24">
                 <use xlink:href="#people-circle" />
@@ -96,8 +91,6 @@
       <div class="col-lg-7 ht-lg-100p m-4">
         <p> Here's the content</p>
       </div>
-    
-  
 
   <footer>
     <div class="container">
