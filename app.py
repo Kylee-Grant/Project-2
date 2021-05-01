@@ -39,20 +39,11 @@ app = Flask(__name__)
     # Not created yet 
     # return render_template("dashboard.html")
 
-
-@app.route("/aboutdata")
-def aboutdata():
-    
-    return render_template("aboutdata.html")
-
-
-@app.route("/aboutus")
-def aboutus():
-    
-    return render_template("aboutus.html")
-
-
 @app.route("/")
+def home():
+    return redirect ("/dashboard")
+
+@app.route("/dashboard")
 def dashboard():
     session = Session(engine)
 
@@ -113,6 +104,17 @@ def dashboard():
     session.close()
 
     return render_template("dashboard.html", USData=USData, stateData=stateData, birthRate1517=birthRate1517, birthRate1819=birthRate1819, countyCSV=countyCSV, nationalCSV=nationalCSV)
+
+@app.route("/aboutdata")
+def aboutdata():
+    
+    return render_template("aboutdata.html")
+
+
+@app.route("/aboutus")
+def aboutus():
+    
+    return render_template("aboutus.html")
 
 
 @app.route("/line_chart")
